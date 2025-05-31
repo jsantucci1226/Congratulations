@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Congratulations, Noah!</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+    
+    body {
+      font-family: 'Bangers', cursive;
+      background: linear-gradient(135deg, #2b1e66, #00ddeb); /* Fortnite-inspired purple to cyan */
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    .game-title {
+      text-shadow: 0 0 10px rgba(0, 221, 235, 0.8), 0 0 20px rgba(255, 75, 255, 0.6);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    .hokies-text {
+      color: #ff6200; /* VT Orange */
+      text-shadow: 0 0 8px #ff6200, 0 0 16px #8b1e3f; /* Orange and Maroon glow */
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .neon-glow {
+      text-shadow: 0 0 5px #ff49fb, 0 0 10px #00ddeb; /* Pink and Cyan neon */
+    }
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #ff49fb;
+      animation: drift 4s linear infinite;
+    }
+    @keyframes drift {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+  <div class="text-center p-8">
+    <h1 class="game-title text-5xl md:text-7xl text-white mb-6">Congratulations, Noah!</h1>
+    <p class="neon-glow text-2xl md:text-4xl text-white mb-4">We are so proud of you!</p>
+    <p class="hokies-text text-3xl md:text-5xl mb-6">Go Hokies!</p>
+    <div class="mt-8">
+      <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl text-lg shadow-lg transform hover:scale-105 transition duration-300">
+        Celebrate!
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Confetti effect with Fortnite-inspired colors
+    function createConfetti() {
+      const colors = ['#ff49fb', '#00ddeb', '#ffcc00', '#2b1e66', '#ff6200', '#8b1e3f']; // Fortnite pinks, cyans, yellows, purples + VT colors
+      for (let i = 0; i < 60; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+        confetti.style.width = Math.random() * 8 + 6 + 'px';
+        confetti.style.height = confetti.style.width;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+    // Trigger confetti on load and button click
+    window.onload = createConfetti;
+    document.querySelector('button').addEventListener('click', createConfetti);
+  </script>
+</body>
+</html>
