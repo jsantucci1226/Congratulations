@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Congratulations, Noah!</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+    .game-title {
+      text-shadow: 4px 4px 8px rgba(255, 77, 77, 0.8), -4px -4px 8px rgba(255, 215, 0, 0.8);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    .hokies-text {
+      color: #ff6200; /* VT Orange */
+      text-shadow: 2px 2px 4px #8b1e3f, -2px -2px 4px #ffffff; /* VT Maroon and White glow */
+    }
+    @keyframes glow {
+      from { text-shadow: 4px 4px 8px rgba(255, 77, 77, 0.8), -4px -4px 8px rgba(255, 215, 0, 0.8); }
+      to { text-shadow: 6px 6px 12px rgba(255, 77, 77, 1), -6px -6px 12px rgba(255, 215, 0, 1); }
+    }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ff0000;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+  <div class="text-center p-6">
+    <h1 class="game-title text-5xl md:text-7xl text-red-500 mb-6">Congratulations, Noah!</h1>
+    <p class="text-2xl md:text-4xl text-yellow-400 mb-4">We are so proud of you!</p>
+    <p class="hokies-text text-3xl md:text-5xl mb-6">Go Hokies!</p>
+    <div class="mt-8">
+      <button class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg text-lg shadow-lg transform hover:scale-105 transition duration-300">
+        Celebrate!
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Confetti effect
+    function createConfetti() {
+      const colors = ['#ff6200', '#8b1e3f', '#ffd700', '#ff0000', '#00ff00', '#0000ff']; // VT colors + extras
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = confetti.style.width;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+    // Trigger confetti on load and button click
+    window.onload = createConfetti;
+    document.querySelector('button').addEventListener('click', createConfetti);
+  </script>
+</body>
+</html>
